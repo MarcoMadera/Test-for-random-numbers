@@ -33,7 +33,7 @@ class LineChart extends React.Component {
         datasets: [{
           fill: 'none',
           pointRadius: 2,
-          borderWidth: 1,
+          borderWidth: 2,
           lineTension: 0,
           label: this.props.data.datasets.label,
           data: this.props.data.datasets.data,

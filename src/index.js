@@ -46,8 +46,12 @@ function chiSqrt() {
   for(let i=0; i<m; i++){
     sum += (oi[i]-ei)**2/ei
   }
-  let uniform = chi.cdf(sum,m)*100;
+  let uniform = (1-chi.cdf(sum,m-1))*100;
   document.getElementById('sol').innerText = `Your data is ${uniform}% uniform`;
+  console.log('m ',m)
+  console.log('sum ', sum)
+  console.log(oi)
+  console.log(ei)
 
    let getlabel = () => {
     let label = [0]
@@ -74,11 +78,17 @@ function chiSqrt() {
       }
   }
 
-  ReactDOM.render(<LineChart
+  
+    ReactDOM.render(
+  <div>
+    <LineChart
     data= {datas}
     title='count'
     color="#B08EA2"
-  />, document.getElementById('linechart'));  
+    />
+    <h4>The straighter the line the more uniform it is</h4>
+  </div>
+  , document.getElementById('linechart'));  
 }
   
 
@@ -92,6 +102,7 @@ class App extends React.Component {
         <button onClick={chiSqrt}>Calculate</button>
         <h1 id="sol"></h1>
         <div id="linechart">
+        
         </div>
       </div>
     );
