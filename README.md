@@ -1,3 +1,3 @@
-## Chi Square Uniform Test
+## Test for random numbers
 
-![](https://repository-images.githubusercontent.com/261734308/825eb300-8f63-11ea-97f0-428871e9558c)
+![](https://repository-images.githubusercontent.com/261734308/eea2ec80-afce-11ea-9cd8-d4b8f382e574)

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+import Chart from "chart.js";
 
 class LineChart extends React.Component {
   constructor(props) {
@@ -7,49 +8,64 @@ class LineChart extends React.Component {
   }
 
   componentDidUpdate() {
+    this.myChart.options.scales.yAxes[0].ticks.max = this.props.data.max;
+    this.myChart.options.scales.yAxes[0].ticks.min = this.props.data.min;
     this.myChart.data.labels = this.props.data.labels;
-    this.myChart.data.datasets[0].data = this.props.data.datasets.data;
+    this.myChart.data.datasets[0].data = this.props.data.datas;
     this.myChart.update();
   }
 
   componentDidMount() {
+    const {
+      labels,
+      label,
+      datas,
+      fill,
+      backgroundColor,
+      pointRadius,
+      borderColor,
+      borderWidth,
+      lineTension,
+      max,
+      min,
+    } = this.props.data;
+
     this.myChart = new Chart(this.canvasRef.current, {
-      type: 'line',
+      type: this.props.type,
       options: {
-	      maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
           yAxes: [
             {
               ticks: {
-                min: 0,
-                max: this.props.data.max
-              }
-            }
-          ]
-        }
+                min: min,
+                max: max,
+              },
+            },
+          ],
+        },
       },
       data: {
-        labels: this.props.data.labels,
-        datasets: [{
-          fill: 'none',
-          pointRadius: 2,
-          borderWidth: 2,
-          lineTension: 0,
-          label: this.props.data.datasets.label,
-          data: this.props.data.datasets.data,
-          backgroundColor: this.props.data.datasets.backgroundColor
-        }]
-      }
-      
+        labels: labels,
+        datasets: [
+          {
+            fill: fill,
+            pointRadius: pointRadius,
+            borderWidth: borderWidth,
+            lineTension: lineTension,
+            borderColor: borderColor,
+            label: label,
+            data: datas,
+            backgroundColor: backgroundColor,
+          },
+        ],
+      },
     });
-    
   }
 
   render() {
-    return (
-        <canvas ref={this.canvasRef} />
-    );
+    return <canvas ref={this.canvasRef} />;
   }
 }
 
-export default LineChart
+export default LineChart;

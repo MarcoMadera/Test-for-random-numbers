@@ -4,4 +4,22 @@
   text-align: center;
 }
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
 
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.res{
+  text-align: left;
+  display: flex;
+  margin: 0;
+}
+
+.res input{
+  align-self: center;
+}
